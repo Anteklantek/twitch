@@ -5,8 +5,10 @@ from Stream import Stream
 from pprint import pprint
 
 client_id = '4g8zvm80hxhc3cfp63ipp8fqlj2pad';
+user = 'anteklantek'
 
-req = Request('https://api.twitch.tv/kraken/users?login=anteklantek')
+request_url = 'https://api.twitch.tv/kraken/users?login=' + user
+req = Request(request_url)
 req.add_header('Accept', 'application/vnd.twitchtv.v5+json')
 req.add_header('Client-ID', client_id)
 
