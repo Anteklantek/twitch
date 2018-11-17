@@ -3,6 +3,7 @@ from urllib.request import Request, urlopen
 import json
 from Stream import Stream
 from pprint import pprint
+import os
 
 client_id = '4g8zvm80hxhc3cfp63ipp8fqlj2pad';
 user = 'anteklantek'
@@ -56,9 +57,15 @@ for i in range(number_of_active):
     status = json_stream_active_i['channel']['status']
     game = json_stream_active_i['channel']['game']
     viewers = json_stream_active_i['viewers']
-    list_of_active_streams_deserialized.append(str(Stream(name, status, viewers, game)))
+    list_of_active_streams_deserialized.append(Stream(name, status, viewers, game))
 
 
 
-for stream in list_of_active_streams_deserialized:
-    print(stream)
+for i in range(len(list_of_active_streams_deserialized)):
+    print(str(i+1) + ". " + str(list_of_active_streams_deserialized[i]))
+
+user_input = input("Which one would you like? (0 to exit)\n")
+
+print("You entered " + str(user_input))
+if (int(user_input) > 0):
+    os.system("streamlink twitch.tv/" + list_of_active_streams_deserialized[int(user_input)-1].name + " best")
